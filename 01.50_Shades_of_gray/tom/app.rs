@@ -1,1 +1,1 @@
- 
+use std::old_io::File;use std::fmt;fn main(){let mut f = File::create(&Path::new("o.pgm"));f.write("P2 1000 20 50".as_bytes());for i in 0..20{f.write("\n".as_bytes());for x in 0..50{for j in 0..20{f.write(format!("{:3}", x).as_bytes());}}}}
