@@ -9,3 +9,7 @@ JavaScript
 
 ## limitations
 No strings, no numbers.
+
+## Bonus points
+For bonus points, include grammar:
+'Hello, World!'

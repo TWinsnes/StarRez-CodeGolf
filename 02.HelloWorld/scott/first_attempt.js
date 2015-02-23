@@ -1,1 +1,1 @@
-a=-~true;a<<=a;alert(([]+function Hello(a, World){!a}).substr(++a).replace(/[\(a\)\{\}]/g,[]+[]));
+a=-~true;alert(([]+function Hello(a, World){!a}).substr(++a*a).replace(/[(a){}]/g,[]+[]));

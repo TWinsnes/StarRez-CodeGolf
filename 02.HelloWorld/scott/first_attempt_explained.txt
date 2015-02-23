@@ -1,36 +1,27 @@
-//Set 'a' as 8.
-//  We take 'true' which is seen as 1 and apply a bitwise NOT:
-//   ~00000000000000000000000000000001
-//   =11111111111111111111111111111110
-//  As numbers in javascript are signed 32-bit integers, this gives us -2 (aka, two's complement)
-//  We then make -2 positive to give us 2.
+// We take 'true' which is seen as 1 and apply a bitwise NOT:
+//  ~00000000000000000000000000000001
+//  =11111111111111111111111111111110
+// As numbers in javascript are signed 32-bit integers, this gives us -2 (aka, two's complement)
+// We then make -2 positive to give us 2.
 
 a=-~true;
-
-//  We then bitwise shift 2 by 2:
-//   00000000000000000000000000000010 << 2
-//  =00000000000000000000000000001000
-//  Which gives us 8.
-
-a<<=a;
 
 //Alert wrapper
 
 alert(
 
-	//We define a function containing everything we need; hello, world, and all symbols
-	//Adding an empty array to an object allows us to cast the resulting object as a string
+	// We define a function containing everything we need; hello, world, and all symbols
+	// Adding an empty array to an object allows us to cast the resulting object as a string
 
 	([]+function Hello(a, World){!a})
 	
-		//We then take this string, and grab only the part we need
-		//Up to this point, a=8
-		//So '++a' gives us 9
+		// We then take this string, and grab only the part we need
+		// 'a' is 2, so '(++a)*a' = 9
 
-		.substr(++a)
+		.substr(++a*a)
 
-		//Finally we can use a regex replace to remove the unneeded characters ('g' at the end signals to replace all matches)
-		// []+[] is the same as ""
+		// Finally we can use a regex replace to remove the unneeded characters ('g' at the end signals to replace all matches)
+		//  []+[] is the same as ""
 
-		.replace(/[\(a\)\{]/g,[]+[])
+		.replace(/[(a){}]/g,[]+[])
 );
