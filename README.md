@@ -10,3 +10,4 @@ All code added to this repository will be under the MIT license
 1. Each folder is a different challenge
 2. To submit create a new sub-directory containing your files
 3. Each challenge has their own set of rules in a README file
+4. 2 files for each submission, one minified and one rolled out with comments explaining what you have done
