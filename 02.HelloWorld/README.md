@@ -9,6 +9,7 @@ JavaScript
 
 ## limitations
 No strings, no numbers.
+Regex source property not allowed. Looking at you Scott. so no, alert(/Hello, World!/.source)
 
 ## Bonus points
 For bonus points, include grammar:
