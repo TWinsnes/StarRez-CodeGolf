@@ -4,7 +4,7 @@
 // as possible but there is most probably a well and truly shorter way
 // to do this. Yep
 
-var n = true + false, 			// 1
+	n = -~NaN, 			// 1
 	t = n << n, 				// 2
 	i = t << t, 				// 8
 	d = i * (n + t) + n << t, 	// 100 (d)
