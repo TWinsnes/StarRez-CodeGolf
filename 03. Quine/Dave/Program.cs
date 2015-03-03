@@ -19,7 +19,7 @@ namespace Quine
 "{",
 "	internal class Program",
 "	{",
-"		private static void Main(string[] args)",
+"		public static void Main(string[] args)",
 "		{",
 "			string[] str = {",
 "			};",
@@ -27,7 +27,7 @@ namespace Quine
 "			for (int i = 0; i < 12; i++) sb.AppendLine(str[i]);",
 "			for (int i = 0; i < str.Length; i++) sb.AppendLine((char)34 + str[i] + (char)34 + ',');",
 "			for (int i = 12; i < str.Length; i++) sb.AppendLine(str[i]);",
-"			string input = sb.ToString();",
+"			string input = sb.Remove(sb.Length - 2, 2).ToString();",
 "			char[] sample = input.Distinct().ToArray();",
 "			Random rand = new Random();",
 "			string attempt = string.Concat(Enumerable.Range(0, input.Length).Select(e => sample[rand.Next(0, sample.Length)]));",
@@ -36,21 +36,25 @@ namespace Quine
 "			{",
 "				if (attempt.Equals(input, StringComparison.Ordinal))",
 "				{",
-"					Console.WriteLine(attempt);",
+"					Console.Write(attempt);",
 "					return;",
 "				}",
 "				List<string> children = new List<string>(50);",
 "				for (int i = 0; i < 50; i++)",
 "				{",
 "					StringBuilder mutation = new StringBuilder(attempt);",
-"					for (int j = 0; j < 5; j++)",
+"					for (int j = 0; j < 50; j++)",
 "					{",
-"						mutation[rand.Next(0, attempt.Length)] = sample[rand.Next(0, sample.Length)];",
+"						int index = rand.Next(0, attempt.Length);",
+"						if (mutation[index] != input[index])",
+"						{",
+"							mutation[index] = sample[rand.Next(0, sample.Length)];",
+"						}",
 "					}",
 "					children.Add(mutation.ToString());",
 "				}",
-"				children.Sort(new Comp());",
-"				attempt = children[0];",
+"				Comp cmp = new Comp();",
+"				attempt = children.OrderBy(c => cmp.Compare(c, input)).First();",
 "			}",
 "		}",
 "	}",
@@ -74,7 +78,7 @@ namespace Quine
 			for (int i = 0; i < 12; i++) sb.AppendLine(str[i]);
 			for (int i = 0; i < str.Length; i++) sb.AppendLine((char)34 + str[i] + (char)34 + ',');
 			for (int i = 12; i < str.Length; i++) sb.AppendLine(str[i]);
-			string input = sb.ToString();
+			string input = sb.Remove(sb.Length - 2, 2).ToString();
 			char[] sample = input.Distinct().ToArray();
 			Random rand = new Random();
 			string attempt = string.Concat(Enumerable.Range(0, input.Length).Select(e => sample[rand.Next(0, sample.Length)]));
@@ -83,21 +87,25 @@ namespace Quine
 			{
 				if (attempt.Equals(input, StringComparison.Ordinal))
 				{
-					Console.WriteLine(attempt);
+					Console.Write(attempt);
 					return;
 				}
 				List<string> children = new List<string>(50);
 				for (int i = 0; i < 50; i++)
 				{
 					StringBuilder mutation = new StringBuilder(attempt);
-					for (int j = 0; j < 5; j++)
+					for (int j = 0; j < 50; j++)
 					{
-						mutation[rand.Next(0, attempt.Length)] = sample[rand.Next(0, sample.Length)];
+						int index = rand.Next(0, attempt.Length);
+						if (mutation[index] != input[index])
+						{
+							mutation[index] = sample[rand.Next(0, sample.Length)];
+						}
 					}
 					children.Add(mutation.ToString());
 				}
-				children.Sort(new Comp());
-				attempt = children[0];
+				Comp cmp = new Comp();
+				attempt = children.OrderBy(c => cmp.Compare(c, input)).First();
 			}
 		}
 	}
