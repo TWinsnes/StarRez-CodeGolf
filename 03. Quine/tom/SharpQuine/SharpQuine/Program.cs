@@ -1,1 +1,1 @@
-﻿class p{static void Main(){var s="class p{{static int Main(){{var s=\"{0}\";System.Console.Write(s,s);}}}}";System.Console.Write(s,s);}}
+﻿class p{static void Main(){var s="class p{{static int Main(){{var s={1}{0}{1};System.Console.Write(s,s,'{1}');}}}}";System.Console.Write(s,s,'"');}}
